@@ -45,11 +45,7 @@ class MyHomePageState extends State<MyHomePage> {
       }
     ];
 
-    List<Widget> listarespostas = [];
-
-    for (var respostas in perguntas[questaoatual]['respostas']) {
-      listarespostas.add(BotoesResposta(respostas, alterarQuestao));
-    }
+    List<String> respostas = perguntas[questaoatual]['respostas'];
 
     return Scaffold(
       appBar: AppBar(
@@ -60,7 +56,7 @@ class MyHomePageState extends State<MyHomePage> {
           children: [
             Container(height: 20),
             TextQuestao(perguntas[questaoatual]['texto']),
-            ...listarespostas,
+            ...respostas.map((t) => BotoesResposta(t, alterarQuestao)).toList(),
           ],
         ),
       ),
