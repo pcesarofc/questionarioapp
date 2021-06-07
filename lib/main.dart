@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:questionarioapp/BotoesResposta.dart';
 import 'package:questionarioapp/Questionario.dart';
 import 'package:questionarioapp/Resultado.dart';
-import 'TextQuestoes.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,27 +19,45 @@ class MyApp extends StatelessWidget {
   }
 }
 
-final List<Map> _perguntas = const [
+final List<Map<String, Object>> _perguntas = [
   {
     'texto': 'Qual é a sua cor favorita?',
-    'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
+    'respostas': [
+      {'texto': 'Preto', 'nota': '10'},
+      {'texto': 'Vermelho', 'nota': '5'},
+      {'texto': 'Verde', 'nota': '3'},
+      {'texto': 'Branco', 'nota': '1'}
+    ],
   },
   {
     'texto': 'Qual é o seu animal favorito?',
-    'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
+    'respostas': [
+      {'texto': 'Coelho', 'nota': '10'},
+      {'texto': 'Cobra', 'nota': '5'},
+      {'texto': 'Elefante', 'nota': '3'},
+      {'texto': 'Leão', 'nota': '1'},
+    ],
   },
   {
     'texto': 'Qual é o seu instrutor favorito?',
-    'respostas': ['Maria', 'João', 'Leo', 'Pedro'],
+    'respostas': [
+      {'texto': 'Maria', 'nota': 10},
+      {'texto': 'João', 'nota': 5},
+      {'texto': 'Leo', 'nota': 3},
+      {'texto': 'Pedro', 'nota': 1},
+    ],
   }
 ];
 
 class MyHomePageState extends State<MyHomePage> {
   var _questaoatual = 0;
+  var _nota;
 
-  void _alterarquestao() {
+  void _alterarquestao(String nota) {
     setState(() {
       _questaoatual++;
+      _nota = nota;
+      print(_nota);
     });
   }
 
