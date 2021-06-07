@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:questionarioapp/main.dart';
 
 class BotoesResposta extends StatelessWidget {
   final String texto;
+  final void Function() onSelecao;
 
-  BotoesResposta(this.texto);
+  BotoesResposta(this.texto, this.onSelecao);
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: null,
-      child: Text(texto),
+    return Container(
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: onSelecao,
+        child: Text(texto),
+      ),
     );
   }
 }

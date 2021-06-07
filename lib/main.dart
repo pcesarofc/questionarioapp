@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:questionarioapp/BotoesResposta.dart';
-import 'package:questionarioapp/questoes.dart';
-
 import 'TextQuestoes.dart';
 
 void main() {
@@ -22,17 +20,37 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePageState extends State<MyHomePage> {
-  int questaoatual = 0;
+  var questaoatual = 0;
 
   void alterarQuestao() {
     setState(() {
       questaoatual++;
-      print(questaoatual);
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    List<Map> perguntas = [
+      {
+        'texto': 'Qual é a sua cor favorita?',
+        'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
+      },
+      {
+        'texto': 'Qual é o seu animal favorito?',
+        'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
+      },
+      {
+        'texto': 'Qual é o seu instrutor favorito?',
+        'respostas': ['Maria', 'João', 'Leo', 'Pedro'],
+      }
+    ];
+
+    List<Widget> listarespostas = [];
+
+    for (var respostas in perguntas[questaoatual]['respostas']) {
+      listarespostas.add(BotoesResposta(respostas, alterarQuestao));
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Pergunta'),
@@ -40,10 +58,9 @@ class MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           children: [
-            TextQuestao(questoes[questaoatual]),
-            BotoesResposta('Resposta 1'),
-            BotoesResposta('Resposta 2'),
-            BotoesResposta('Resposta 3'),
+            Container(height: 20),
+            TextQuestao(perguntas[questaoatual]['texto']),
+            ...listarespostas,
           ],
         ),
       ),
