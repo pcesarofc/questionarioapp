@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:questionarioapp/BotoesResposta.dart';
+import 'package:questionarioapp/Questionario.dart';
+import 'package:questionarioapp/Resultado.dart';
 import 'TextQuestoes.dart';
 
 void main() {
@@ -49,26 +51,16 @@ class MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    List<String>? respostas =
-        temPerguntaSelecionada ? _perguntas[_questaoatual]['respostas'] : null;
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Pergunta'),
       ),
       body: temPerguntaSelecionada
-          ? Center(
-              child: Column(
-                children: [
-                  Container(height: 20),
-                  TextQuestao(_perguntas[_questaoatual]['texto']),
-                  ...respostas!
-                      .map((t) => BotoesResposta(t, _alterarquestao))
-                      .toList(),
-                ],
-              ),
-            )
-          : null,
+          ? Questionario(
+              perguntas: _perguntas,
+              questaoAtual: _questaoatual,
+              alterarquestao: _alterarquestao)
+          : Resultado(),
     );
   }
 }
