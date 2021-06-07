@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:questionarioapp/main.dart';
 
 class BotoesResposta extends StatelessWidget {
   final String texto;

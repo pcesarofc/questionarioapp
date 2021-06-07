@@ -19,47 +19,56 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePageState extends State<MyHomePage> {
-  var questaoatual = 0;
+final List<Map> _perguntas = const [
+  {
+    'texto': 'Qual é a sua cor favorita?',
+    'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
+  },
+  {
+    'texto': 'Qual é o seu animal favorito?',
+    'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
+  },
+  {
+    'texto': 'Qual é o seu instrutor favorito?',
+    'respostas': ['Maria', 'João', 'Leo', 'Pedro'],
+  }
+];
 
-  void alterarQuestao() {
+class MyHomePageState extends State<MyHomePage> {
+  var _questaoatual = 0;
+
+  void _alterarquestao() {
     setState(() {
-      questaoatual++;
+      _questaoatual++;
     });
+  }
+
+  bool get temPerguntaSelecionada {
+    return _questaoatual < _perguntas.length;
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Map> perguntas = [
-      {
-        'texto': 'Qual é a sua cor favorita?',
-        'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
-      },
-      {
-        'texto': 'Qual é o seu animal favorito?',
-        'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
-      },
-      {
-        'texto': 'Qual é o seu instrutor favorito?',
-        'respostas': ['Maria', 'João', 'Leo', 'Pedro'],
-      }
-    ];
-
-    List<String> respostas = perguntas[questaoatual]['respostas'];
+    List<String>? respostas =
+        temPerguntaSelecionada ? _perguntas[_questaoatual]['respostas'] : null;
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Pergunta'),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Container(height: 20),
-            TextQuestao(perguntas[questaoatual]['texto']),
-            ...respostas.map((t) => BotoesResposta(t, alterarQuestao)).toList(),
-          ],
-        ),
-      ),
+      body: temPerguntaSelecionada
+          ? Center(
+              child: Column(
+                children: [
+                  Container(height: 20),
+                  TextQuestao(_perguntas[_questaoatual]['texto']),
+                  ...respostas!
+                      .map((t) => BotoesResposta(t, _alterarquestao))
+                      .toList(),
+                ],
+              ),
+            )
+          : null,
     );
   }
 }
