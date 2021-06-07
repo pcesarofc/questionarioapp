@@ -1,6 +1,6 @@
 # questionarioapp
 
-A new Flutter project.
+Novo projeto Flutter. App de questionário em desenvolvimento junto ao curso Aprenda Flutter e Desenvolva Apps Para Android e IOS 2021.
 
 ## Getting Started
 
