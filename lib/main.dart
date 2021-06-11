@@ -62,6 +62,13 @@ class MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _zerarQuestao() {
+    setState(() {
+      _questaoatual = 0;
+      _nota = 0;
+    });
+  }
+
   bool get temPerguntaSelecionada {
     return _questaoatual < _perguntas.length;
   }
@@ -77,7 +84,7 @@ class MyHomePageState extends State<MyHomePage> {
               perguntas: _perguntas,
               questaoAtual: _questaoatual,
               alterarquestao: _alterarquestao)
-          : Resultado(_nota),
+          : Resultado(_nota, _zerarQuestao),
     );
   }
 }
