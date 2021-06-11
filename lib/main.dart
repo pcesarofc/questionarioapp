@@ -77,7 +77,7 @@ class MyHomePageState extends State<MyHomePage> {
               perguntas: _perguntas,
               questaoAtual: _questaoatual,
               alterarquestao: _alterarquestao)
-          : Resultado(),
+          : Resultado(_nota),
     );
   }
 }
