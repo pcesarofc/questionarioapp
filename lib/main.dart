@@ -26,7 +26,7 @@ final List<Map<String, Object>> _perguntas = [
       {'texto': 'Preto', 'nota': '10'},
       {'texto': 'Vermelho', 'nota': '5'},
       {'texto': 'Verde', 'nota': '3'},
-      {'texto': 'Branco', 'nota': '1'}
+      {'texto': 'Branco', 'nota': '1'},
     ],
   },
   {
@@ -41,22 +41,23 @@ final List<Map<String, Object>> _perguntas = [
   {
     'texto': 'Qual é o seu instrutor favorito?',
     'respostas': [
-      {'texto': 'Maria', 'nota': 10},
-      {'texto': 'João', 'nota': 5},
-      {'texto': 'Leo', 'nota': 3},
-      {'texto': 'Pedro', 'nota': 1},
+      {'texto': 'Maria', 'nota': '10'},
+      {'texto': 'João', 'nota': '5'},
+      {'texto': 'Leo', 'nota': '3'},
+      {'texto': 'Pedro', 'nota': '1'},
     ],
   }
 ];
 
 class MyHomePageState extends State<MyHomePage> {
   var _questaoatual = 0;
-  var _nota;
+  int _nota = 0;
 
   void _alterarquestao(String nota) {
     setState(() {
       _questaoatual++;
-      _nota = nota;
+      var notinha = int.parse(nota);
+      _nota += notinha;
       print(_nota);
     });
   }
